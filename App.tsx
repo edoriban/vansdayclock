@@ -15,7 +15,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { RefreshCcw, ShieldAlert, Info } from 'lucide-react-native';
 import Colors from './constants/Colors';
 import DoomsdayClock from './components/DoomsdayClock';
-import CosmicBackground from './components/CosmicBackground';
+// LITE VERSION: CosmicBackground removed for testing
+// import CosmicBackground from './components/CosmicBackground';
 import { useDoomsday } from './hooks/useDoomsday';
 import { setupNotifications } from './services/notificationService';
 
@@ -51,18 +52,22 @@ function DoomsdayApp() {
 
   if (loading && !data) {
     return (
-      <View style={[styles.container, styles.center]}>
-        <CosmicBackground />
+      <LinearGradient
+        colors={['#050505', '#1a0a0a', '#050505']}
+        style={[styles.container, styles.center]}
+      >
         <ActivityIndicator size="large" color={Colors.midnight.accent} />
         <Text style={styles.loadingText}>ASSESSING GLOBAL THREATS...</Text>
-      </View>
+      </LinearGradient>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#050505', '#1a0a0a', '#0d0505']}
+      style={styles.container}
+    >
       <StatusBar barStyle="light-content" />
-      <CosmicBackground />
       <View style={[styles.safeArea, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         <ScrollView contentContainerStyle={styles.scrollContent}>
           <View style={styles.header}>
@@ -100,7 +105,7 @@ function DoomsdayApp() {
           </View>
         </ScrollView>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

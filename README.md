@@ -39,6 +39,34 @@ npx expo prebuild
 
 ---
 
+## ⚠️ Nota sobre Compatibilidad y Versión "Lite"
+
+**Problema conocido:** La librería de gráficos 3D (`Three.js` / `expo-gl`) causaba cierres inesperados (crashes) en ciertos dispositivos Android (ej. OnePlus Nord N30 5G) debido a incompatibilidades con OpenGL.
+
+**Solución Actual:**
+Se ha habilitado una **Versión Lite** por defecto que:
+1. Deshabilita el fondo 3D (`CosmicBackground`).
+2. Usa un degradado `LinearGradient` optimizado.
+3. Reduce significativamente el riesgo de fallos en el arranque.
+
+### Comandos para Compilación Segura (Universal)
+Para asegurar que la app funcione en todos los dispositivos Android:
+
+1. **Limpia y regenera los archivos nativos:**
+   ```powershell
+   npx expo prebuild --clean
+   ```
+   *(Acepta con "yes" si te pregunta por cambios no guardados)*
+
+2. **Compila la versión Release Universal:**
+   ```powershell
+   cd android
+   ./gradlew assembleRelease
+   ```
+   *Esto generará un APK compatible con todas las arquitecturas y sin el bug de 3D.*
+
+---
+
 ##  Información sobre iOS
 
 Compilar para iOS es más restrictivo debido a las políticas de Apple:

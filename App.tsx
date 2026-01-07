@@ -20,6 +20,7 @@ import { useDoomsday } from './hooks/useDoomsday';
 import { setupNotifications } from './services/notificationService';
 
 function DoomsdayApp() {
+  console.log('--- DOOMSDAY APP MOUNTED ---');
   const { data, loading, refresh } = useDoomsday();
   const insets = useSafeAreaInsets();
 
